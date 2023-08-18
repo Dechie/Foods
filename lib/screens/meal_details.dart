@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/meal.dart';
+import '../providers/favorites.dart';
 
-class MealDetailScreen extends StatelessWidget {
+class MealDetailScreen extends ConsumerWidget {
   const MealDetailScreen({
     super.key,
     required this.meal,
@@ -12,17 +13,61 @@ class MealDetailScreen extends StatelessWidget {
   final Meal meal;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(meal.title),
-      ),
-      body: Image.network(
+        appBar: AppBar(
+          title: Text(meal.title),
+          actions: [
+            IconButton(
+              color: Colors.white,
+              onPressed: () {
+                final wasAded = ref
+                    .read(favoriteMealsProvider.notifier)
+                    .toggleMealFavoriteStatus(meal);
+
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text(
+                          wasAded ? 'meal added as favorite' : 'meal removed')),
+                );
+              },
+              icon: const Icon(Icons.star),
+            ),
+          ],
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+           Image.network(
         meal.imageUrl,
         height: 300,
         width: double.infinity,
         fit: BoxFit.cover,
-      ),
-    );
+      ), 
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+              'Ingredients:',
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+            ...meal.ingredients.map((ingr) => Text(ingr, style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Colors.white
+            ),),),
+            const SizedBox(height: 10),
+            Text(
+              'Steps:',
+              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+            ...meal.steps.map((st) => Text(st, style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Colors.white
+            ),),),
+          ],
+        ));
   }
 }

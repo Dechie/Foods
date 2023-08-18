@@ -15,8 +15,8 @@ const availableCats = [
   ),
   Category(
     id: 'c3',
-    title: 'Hamburgers',
-    color: Colors.orange,
+    title: 'Ethiopian',
+    color: Colors.lightGreen,
   ),
   Category(
     id: 'c4',
@@ -41,7 +41,7 @@ const availableCats = [
   Category(
     id: 'c8',
     title: 'Asian',
-    color: Colors.lightGreen,
+    color: Colors.orange,
   ),
   Category(
     id: 'c9',
@@ -121,29 +121,28 @@ const dummyMeals = [
   Meal(
     id: 'm3',
     categories: [
-      'c2',
       'c3',
     ],
-    title: 'Classic Hamburger',
+    title: 'Beef Tibs',
     affordability: Affordability.pricey,
-    complexity: Complexity.simple,
+    complexity: Complexity.challenging,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
+        'https://media.cnn.com/api/v1/images/stellar/prod/190205144959-shekla-tibs.jpg',
     duration: 45,
     ingredients: [
-      '300g Cattle Hack',
-      '1 Tomato',
-      '1 Cucumber',
-      '1 Onion',
-      'Ketchup',
-      '2 Burger Buns'
+      '1 lb beef tenderloin (455 g), cubed',
+      'pepper, to taste',
+      'injera',
+      '2 teaspoons spiced butter, niter kibbeh, or clarified butter',
+      '1 medium red onion, thinly sliced'
+          '2 cloves garlic, minced',
     ],
     steps: [
-      'Form 2 patties',
-      'Fry the patties for c. 4 minutes on each side',
-      'Quickly fry the buns for c. 1 minute on each side',
-      'Bruch buns with ketchup',
-      'Serve burger with tomato, cucumber and onion'
+      'Cut the beef tenderloin into cubes. ',
+      'Add the cubed beef to the skillet and season to taste with salt, pepper, and berbere.',
+      'Add a drizzle of canola oil and the kibbeh to the same pan over medium heat. Once the kibbeh is melted, add the onion, and garlic, until starting to soften.',
+      'Add the rosemary, cumin, and cook for one minute',
+      'Serve the tibs over injera, garnished with berbere'
     ],
     isGlutenFree: false,
     isVegan: false,
@@ -403,5 +402,51 @@ const dummyMeals = [
     isVegan: true,
     isVegetarian: true,
     isLactoseFree: true,
+  ),
+  Meal(
+    id: 'm11',
+    categories: ['c3'],
+    title: 'Beyaynet',
+    imageUrl:
+        'https://www.awazetours.com/uploads/1/0/4/0/104067226/vegetarian-combination-with-injera_orig.jpeg',
+    ingredients: [
+      '¾ cup Canola or vegetable oil',
+      'medium Onion',
+      'Berbere spice mix',
+      'Dried yellow split peas',
+      'ginger',
+      'Dried red lentils, rinsed',
+      'Fine sea salt'
+    ],
+    steps: ['In a medium saucepan, heat oil over medium heat.', ''],
+    duration: 50,
+    complexity: Complexity.challenging,
+    affordability: Affordability.affordable,
+    isGlutenFree: true,
+    isLactoseFree: true,
+    isVegan: true,
+    isVegetarian: true,
+  ),
+  Meal(
+    id: 'm12',
+    categories: ['c3'],
+    title: 'Shiro',
+    imageUrl: 'https://media.cnn.com/api/v1/images/stellar/prod/190205175544-tegabino-shiro.jpg',
+    ingredients: [
+      'shiro spice',
+      'injera',
+      'salt'
+    ],
+    steps: [
+      'step1',
+      'step 2',
+    ],
+    duration: 55,
+    complexity: Complexity.simple,
+    affordability: Affordability.affordable,
+    isGlutenFree: true,
+    isLactoseFree: true,
+    isVegan: true,
+    isVegetarian: true,
   ),
 ];

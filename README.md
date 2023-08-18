@@ -1,17 +1,8 @@
 # meals
 
-A new Flutter project.
+## A Flutter foods app.
 
-## Getting Started
+you can view the meals by categories, add a meal to your favorites, and
+also filter meals by different criteria: gluten free, lactose free, vegetarian and vegan.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# Foods
+the app employs state management using riverpod.
