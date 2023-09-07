@@ -14,6 +14,10 @@ class MealDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteMeals = ref.watch(favoriteMealsProvider);
+
+    final bool isFavorite = favoriteMeals.contains(meal);
+
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
@@ -32,19 +36,19 @@ class MealDetailScreen extends ConsumerWidget {
                           wasAded ? 'meal added as favorite' : 'meal removed')),
                 );
               },
-              icon: const Icon(Icons.star),
+              icon: Icon(isFavorite ? Icons.star : Icons.star_border),
             ),
           ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           Image.network(
-        meal.imageUrl,
-        height: 300,
-        width: double.infinity,
-        fit: BoxFit.cover,
-      ), 
+            Image.network(
+              meal.imageUrl,
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
             const SizedBox(
               height: 30,
             ),
@@ -54,9 +58,15 @@ class MealDetailScreen extends ConsumerWidget {
                     color: Colors.white,
                   ),
             ),
-            ...meal.ingredients.map((ingr) => Text(ingr, style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              color: Colors.white
-            ),),),
+            ...meal.ingredients.map(
+              (ingr) => Text(
+                ingr,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: Colors.white),
+              ),
+            ),
             const SizedBox(height: 10),
             Text(
               'Steps:',
@@ -64,9 +74,15 @@ class MealDetailScreen extends ConsumerWidget {
                     color: Colors.white,
                   ),
             ),
-            ...meal.steps.map((st) => Text(st, style: Theme.of(context).textTheme.bodySmall!.copyWith(
-              color: Colors.white
-            ),),),
+            ...meal.steps.map(
+              (st) => Text(
+                st,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: Colors.white),
+              ),
+            ),
           ],
         ));
   }
