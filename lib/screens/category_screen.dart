@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
 import 'package:meals/screens/meals.dart';
@@ -20,11 +21,36 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  List<Category> availableCategories = [];
+
+  void fetchCategories() async {
+    List<Category> cats = [];
+    const url = 'http://127.0.0.1:3000/categories';
+    var dio = Dio();
+    var response;
+    try {
+      response = await dio.get(url);
+
+      if (response.statusCode == 200) {
+        for (var data in response.data) {
+          cats.add(Category.fromJson(data));
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+
+    if (cats.isNotEmpty) {
+      setState(() {
+        availableCategories = cats;
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-
+    fetchCategories();
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -66,7 +92,8 @@ class _CategoriesScreenState extends State<CategoriesScreen>
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
           ),
-          children: availableCats
+          //children: availableCats
+          children: availableCategories
               .map(
                 (category) => CategoryGridItem(
                   category: category,
